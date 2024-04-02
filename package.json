@@ -1,0 +1,44 @@
+{
+  "name": "js-scripts",
+  "version": "0.0.1",
+  "description": "Simple Javascript script modules built from TypeScript.",
+  "author": "hoppingmode",
+  "license": "ISC",
+  "scripts": {
+    "start:webpack": "webpack --config webpack.config.ts --mode development --watch",
+    "build": "tsc",
+    "build:webpack": "webpack --config webpack.config.ts --mode production",
+    "prebuild": "rm -rf dist"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "figlet": "^1.7.0",
+    "url": "^0.11.3",
+    "util": "^0.12.5"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.8",
+    "@types/node": "^20.11.24",
+    "@types/webpack": "^5.28.5",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-import-resolver-webpack": "^0.13.8",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "node-loader": "^2.0.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.3.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

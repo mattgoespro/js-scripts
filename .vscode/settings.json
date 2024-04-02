@@ -1,0 +1,64 @@
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
+  },
+  "thunder-client.activeEnvironmentSelection": "Save To File",
+  "thunder-client.requestLayout": "Left/Right",
+  "thunder-client.sidebar.defaultTab": "Collections",
+  "thunder-client.httpLibrary": "axios",
+  "thunder-client.previewFeatures": true,
+  "editor.defaultFoldingRangeProvider": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.enable": true,
+  "eslint.format.enable": false,
+  "eslint.probe": ["javascript", "typescript"],
+  "eslint.run": "onType",
+  "eslint.validate": ["javascript", "typescript"],
+  "explorer.confirmDragAndDrop": false,
+  "files.exclude": {
+    "**/node_modules/**": true,
+    ".git": true
+  },
+  "files.watcherExclude": {
+    "**/dist/**": true,
+    "**/node_modules/**": true,
+    ".git": true
+  },
+  "javascript.format.enable": false,
+  "javascript.suggestionActions.enabled": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.validate.enable": false,
+  "markdown.occurrencesHighlight.enabled": true,
+  "material-icon-theme.files.color": "#000000",
+  "material-icon-theme.folders.color": "#eb7734",
+  "material-icon-theme.hidesExplorerArrows": true,
+  "npm.exclude": "release/**",
+  "prettier.configPath": ".prettierrc.js",
+  "search.exclude": {
+    "**/dist/**": true,
+    ".git": true,
+    "node_modules": true,
+    "npm-debug.log.*": true,
+    "package-lock.json": true
+  },
+  "template-string-converter.autoRemoveTemplateString": true,
+  "template-string-converter.convertOutermostQuotes": true,
+  "template-string-converter.validLanguages": ["javascript", "typescript"],
+  "typescript.format.enable": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.iconTheme": "material-icon-theme",
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "thunder-client.saveToWorkspace": true,
+  "thunder-client.workspaceRelativePath": "tc",
+  "thunder-client.customLocation": "./tc"
+}

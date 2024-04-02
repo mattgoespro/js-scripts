@@ -1,0 +1,21 @@
+{
+  "include": ["src"],
+  "files": ["tc-types.d.ts", "webpack.config.ts"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "noEmit": false,
+    "outDir": "dist",
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strict": false,
+    "lib": ["dom"],
+    "baseUrl": ".",
+    "paths": {},
+    "types": ["node", "./tc-types.d.ts"]
+  },
+  "exclude": ["node_modules"]
+}

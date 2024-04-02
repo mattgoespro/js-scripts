@@ -1,0 +1,6 @@
+node_modules/
+out/scraped/**
+out/*.json
+dist/
+temp/
+j4t/
