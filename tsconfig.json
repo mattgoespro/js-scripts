@@ -2,8 +2,8 @@
   "include": ["src"],
   "files": ["webpack.config.ts"],
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "CommonJS",
     "noEmit": false,
     "outDir": "dist",
     "sourceMap": false,

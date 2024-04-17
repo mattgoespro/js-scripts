@@ -56,7 +56,7 @@ export async function resolveVideoInMillis(time: number) {
 
 const pageUrl = window.location.href;
 
-export default () => {
+export function getVideoUrl() {
   if (Object.values(MATCH_URL_REGEX_MAP).some((urlPattern) => urlPattern.test(pageUrl))) {
     if (MATCH_URL_REGEX_MAP["camwhoresbay"].test(pageUrl)) {
       document.querySelector<HTMLDivElement>("div.fp-player").click();
@@ -73,4 +73,4 @@ export default () => {
         .catch((error) => console.log(error.message));
     }
   }
-};
+}

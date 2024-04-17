@@ -10,13 +10,14 @@ const config: Configuration = {
   mode: "production",
   entry: {
     utils: {
-      import: "./src/utils.ts",
+      import: "./src/video-downloader.ts",
       filename: "video-downloader.js"
     }
   },
   target: "node",
   output: {
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    libraryTarget: "commonjs-module"
   },
   resolve: {
     extensions: [".ts", ".js"],
