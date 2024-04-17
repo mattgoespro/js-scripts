@@ -8,12 +8,15 @@ import { Configuration } from "webpack";
 
 const config: Configuration = {
   mode: "production",
-  entry: "./src/index.ts",
+  entry: {
+    utils: {
+      import: "./src/utils.ts",
+      filename: "video-downloader.js"
+    }
+  },
   target: "node",
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    libraryTarget: "commonjs2"
+    path: path.resolve(__dirname, "dist")
   },
   resolve: {
     extensions: [".ts", ".js"],

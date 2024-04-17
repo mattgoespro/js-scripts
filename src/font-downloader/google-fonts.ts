@@ -27,8 +27,8 @@ export async function getGoogleFonts() {
 }
 
 export async function getFontDownloadDetails(fontFamily: string) {
-  const fontUrl = `https://fonts.google.com/?family=${fontFamily}`;
-  const fontRsp = await client.get<FontFileDownloadDetails>(fontUrl, {
+  const fontRsp = await client.request<FontFileDownloadDetails>({
+    method: "GET",
     params: {
       family: fontFamily
     }
