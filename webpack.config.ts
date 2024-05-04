@@ -28,7 +28,7 @@ const config: Configuration = {
   target: "node",
   output: {
     path: path.join(__dirname, "dist"),
-    libraryTarget: "commonjs-module"
+    libraryTarget: "commonjs"
   },
   resolve: {
     extensions: [".ts", ".js"],
