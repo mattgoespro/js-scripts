@@ -1,10 +1,10 @@
 {
   "name": "js-scripts",
   "version": "0.0.1",
-  "description": "Simple Javascript script modules built from TypeScript.",
+  "description": "Simple Javascript modules built from TypeScript.",
   "author": "hoppingmode",
-  "license": "ISC",
   "scripts": {
+    "start:serve-js-server": "nodemon --config ./nodemon/serve-js-server.config.json src/serve-js-server/index.ts",
     "start:webpack": "webpack --config webpack.config.ts --mode development --watch",
     "build": "tsc",
     "build:webpack": "webpack --config webpack.config.ts --mode production",
@@ -12,16 +12,16 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
+    "express": "^4.19.2",
     "figlet": "^1.7.0",
     "m3u8-parser": "^7.1.0",
     "m3u8stream": "^0.8.6",
-    "puppeteer-core": "^22.6.3",
-    "puppeteer-stream-controller": "^1.0.1",
     "url": "^0.11.3",
     "util": "^0.12.5",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/figlet": "^1.5.8",
     "@types/node": "^20.11.24",
     "@types/uuid": "^9.0.8",

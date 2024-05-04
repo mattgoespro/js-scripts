@@ -12,11 +12,22 @@ const config: Configuration = {
     utils: {
       import: "./src/video-downloader.ts",
       filename: "video-downloader.js"
+    },
+    serve: {
+      import: "./src/serve-js-server/index.ts",
+      filename: "serve-js-server.js"
+    },
+    externalModule: {
+      import: "./src/external-module.ts",
+      filename: "external.js"
     }
+  },
+  optimization: {
+    minimize: false
   },
   target: "node",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.join(__dirname, "dist"),
     libraryTarget: "commonjs-module"
   },
   resolve: {

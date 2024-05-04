@@ -1,69 +1,95 @@
-(() => {
-  "use strict";
-  var e = {};
-  ((e, o) => {
-    Object.defineProperty(o, "__esModule", { value: !0 }),
-      (o.getVideoUrl = o.resolveVideoInMillis = o.waitForMillis = o.timeoutAfter = void 0);
-    const t = {
-      spankbang: /https:\/\/(www\.)?spankbang\.com\/[\w-]+\/(videos?|playlist)\/.*/,
-      camwhoresbay: /https:\/\/(www\.)?camwhoresbay\.com\/videos\/[\w\d]+\/.*/,
-      "camwhores.tv": /https:\/\/(www\.)?camwhores.tv\/videos\/.*/
-    };
-    function l(e) {
-      var o;
-      null != e
-        ? ((o = e.currentSrc),
-          console.log("                                                                 "),
-          console.log("██╗   ██╗██╗██████╗ ███████╗ ██████╗     ███████╗██████╗  ██████╗"),
-          console.log("██║   ██║██║██╔══██╗██╔════╝██╔═══██╗    ██╔════╝██╔══██╗██╔════╝"),
-          console.log("██║   ██║██║██║  ██║█████╗  ██║   ██║    ███████╗██████╔╝██║     "),
-          console.log("╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║    ╚════██║██╔══██╗██║     "),
-          console.log(" ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝    ███████║██║  ██║╚██████╗"),
-          console.log("  ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝     ╚══════╝╚═╝  ╚═╝ ╚═════╝"),
-          console.log("                                                                 "),
-          console.log(),
-          console.log(),
-          console.log(),
-          console.log(o))
-        : alert("Mo video source found.");
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ 3843:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getVideoUrl = exports.resolveVideoInMillis = exports.waitForMillis = exports.timeoutAfter = void 0;
+const MATCH_URL_REGEX_MAP = {
+    spankbang: /https:\/\/(www\.)?spankbang\.com\/[\w-]+\/(videos?|playlist)\/.*/,
+    camwhoresbay: /https:\/\/(www\.)?camwhoresbay\.com\/videos\/[\w\d]+\/.*/,
+    "camwhores.tv": /https:\/\/(www\.)?camwhores.tv\/videos\/.*/
+};
+function log(message) {
+    console.log("                                                                 ");
+    console.log("██╗   ██╗██╗██████╗ ███████╗ ██████╗     ███████╗██████╗  ██████╗");
+    console.log("██║   ██║██║██╔══██╗██╔════╝██╔═══██╗    ██╔════╝██╔══██╗██╔════╝");
+    console.log("██║   ██║██║██║  ██║█████╗  ██║   ██║    ███████╗██████╔╝██║     ");
+    console.log("╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║    ╚════██║██╔══██╗██║     ");
+    console.log(" ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝    ███████║██║  ██║╚██████╗");
+    console.log("  ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝     ╚══════╝╚═╝  ╚═╝ ╚═════╝");
+    console.log("                                                                 ");
+    console.log();
+    console.log();
+    console.log();
+    console.log(message);
+}
+function getVideoSource(videoElement) {
+    if (videoElement == null) {
+        alert("Mo video source found.");
+        return;
     }
-    async function s(e) {
-      return new Promise((t, l) => {
-        Promise.race([
-          async () => {
-            let e = document.querySelector("video");
-            for (; null == e; )
-              await (0, o.waitForMillis)(500), (e = document.querySelector("video"));
-            return e;
-          },
-          (0, o.timeoutAfter)(e)
-        ])
-          .then((e) => {
-            t(e);
-          })
-          .catch(() => l(new Error("Unable to resolve video element.")));
-      });
+    log(videoElement.currentSrc);
+}
+const timeoutAfter = (time) => new Promise((_, reject) => setTimeout(() => reject(new Error("Timed out.")), time));
+exports.timeoutAfter = timeoutAfter;
+const waitForMillis = (time) => new Promise((resolve) => setTimeout(resolve, time));
+exports.waitForMillis = waitForMillis;
+async function resolveVideoInMillis(time) {
+    return new Promise((resolve, reject) => {
+        const resolveVideoElement = async () => {
+            let videoElement = document.querySelector("video");
+            while (videoElement == null) {
+                await (0, exports.waitForMillis)(500);
+                videoElement = document.querySelector("video");
+            }
+            return videoElement;
+        };
+        Promise.race([resolveVideoElement, (0, exports.timeoutAfter)(time)])
+            .then((el) => {
+            resolve(el);
+        })
+            .catch(() => reject(new Error("Unable to resolve video element.")));
+    });
+}
+exports.resolveVideoInMillis = resolveVideoInMillis;
+const pageUrl = window.location.href;
+function getVideoUrl() {
+    if (Object.values(MATCH_URL_REGEX_MAP).some((urlPattern) => urlPattern.test(pageUrl))) {
+        if (MATCH_URL_REGEX_MAP["camwhoresbay"].test(pageUrl)) {
+            document.querySelector("div.fp-player").click();
+            resolveVideoInMillis(100)
+                .then((videoElement) => {
+                getVideoSource(videoElement);
+            })
+                .catch((error) => console.log(error.message));
+        }
+        else {
+            resolveVideoInMillis(100)
+                .then((videoElement) => {
+                getVideoSource(videoElement);
+            })
+                .catch((error) => console.log(error.message));
+        }
     }
-    (o.timeoutAfter = (e) =>
-      new Promise((o, t) => setTimeout(() => t(new Error("Timed out.")), e))),
-      (o.waitForMillis = (e) => new Promise((o) => setTimeout(o, e))),
-      (o.resolveVideoInMillis = s);
-    const n = window.location.href;
-    o.getVideoUrl = function () {
-      Object.values(t).some((e) => e.test(n)) &&
-        (t.camwhoresbay.test(n)
-          ? (document.querySelector("div.fp-player").click(),
-            s(100)
-              .then((e) => {
-                l(e);
-              })
-              .catch((e) => console.log(e.message)))
-          : s(100)
-              .then((e) => {
-                l(e);
-              })
-              .catch((e) => console.log(e.message)));
-    };
-  })(0, e),
-    (module.exports = e);
-})();
+}
+exports.getVideoUrl = getVideoUrl;
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__[3843](0, __webpack_exports__);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
+/******/ })()
+;
