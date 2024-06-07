@@ -2,33 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "nodemon: debug serve js server",
       "type": "npm",
-      "script": "start",
-      "problemMatcher": [
-        {
-          "source": "debugger",
-          "pattern": {
-            "regexp": "\\[steady-steps-planner-bot\\] (.*)",
-            "endLine": 0,
-            "kind": "line",
-            "severity": 0
-          },
-          "severity": "info",
-          "owner": "typescript"
-        },
-        {
-          "source": "debugger",
-          "pattern": {
-            "regexp": "[\\[{](.*?)[\\]}]",
-            "endLine": 0,
-            "kind": "line"
-          },
-          "severity": "info",
-          "owner": "typescript"
-        }
-      ],
-      "label": "npm: start",
-      "detail": "nodemon --config nodemon.config.json --inspect"
+      "script": "start:start-js-server",
+      "detail": "Start the serve JS server"
     }
   ]
 }

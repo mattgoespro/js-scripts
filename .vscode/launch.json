@@ -2,27 +2,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Steady Steps Planner WhatsApp Bot",
-      "request": "launch",
       "type": "node-terminal",
-      "command": "npm start",
-      "autoAttachChildProcesses": true,
-      "windows": {
-        "skipFiles": ["node_modules/**", "dist/**"],
-        "presentation": {
-          "group": "steady-steps-planner-bot",
-          "order": 0
-        },
-        "internalConsoleOptions": "openOnSessionStart",
-        "outputCapture": "console",
-        "serverReadyAction": {
-          "action": "openExternally",
-          "pattern": "Debugger listening on ws://[0-9.]*:[0-9]*",
-          "uriFormat": "http://localhost:9229/json"
-        },
-        "env": {
-          "WATCH_GROUP_NAME": "Steady Steps Planners"
-        }
+      "request": "launch",
+      "name": "nodemon: debug file server",
+      "command": "nodemon --config nodemon.json ./src/file-server/index.ts"
+    },
+    {
+      "type": "node-terminal",
+
+      "request": "launch",
+      "name": "nodemon: debug video downloader",
+      "command": "nodemon --config nodemon.json ./src/video-downloader.ts $VIDEO_DOWNLOAD_URL",
+      "env": {
+        "VIDEO_DOWNLOAD_URL": "https://www.camwhoresbay.com/get_file/7/56f455ca0dfea118b5cff8b85c8a0bdee95c37beac/327000/327678/327678_720p.mp4/?rnd=1716649137182"
       }
     }
   ]

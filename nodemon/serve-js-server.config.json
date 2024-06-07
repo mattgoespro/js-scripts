@@ -1,9 +1,0 @@
-{
-  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/nodemon.json",
-  "execMap": {
-    "ts": "node -r ts-node/register --no-warnings"
-  },
-  "ext": "*.ts",
-  "ignoreRoot": ["dist", "node_modules"],
-  "watch": ["src\\**\\*.ts"]
-}

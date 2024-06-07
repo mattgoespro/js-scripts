@@ -1,6 +1,5 @@
 {
   "include": ["src"],
-  "files": ["webpack.config.ts"],
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2022",

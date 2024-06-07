@@ -1,25 +1,21 @@
-// / Thunder Client autocompletion on tc object
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-
 import path from "path";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import TsConfigPathsWebpackPlugin from "tsconfig-paths-webpack-plugin";
-import { Configuration } from "webpack";
+import { Configuration, DefinePlugin } from "webpack";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+
+const videoDownloaderOutputDir = "video-downloader/";
 
 const config: Configuration = {
   mode: "production",
   entry: {
-    utils: {
-      import: "./src/video-downloader.ts",
-      filename: "video-downloader.js"
-    },
     serve: {
-      import: "./src/serve-js-server/index.ts",
-      filename: "serve-js-server.js"
+      import: "./src/file-server/index.ts",
+      filename: "file-server.js"
     },
-    externalModule: {
-      import: "./src/external-module.ts",
-      filename: "external.js"
+    vdl: {
+      import: "./src/video-downloader.ts",
+      filename: `${videoDownloaderOutputDir}/vdl.js`
     }
   },
   optimization: {
@@ -47,7 +43,20 @@ const config: Configuration = {
     ]
   },
   devtool: false,
-  plugins: [new CleanWebpackPlugin({ verbose: true })]
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "bin/youtube-dl.exe",
+          to: videoDownloaderOutputDir
+        }
+      ]
+    }),
+    new CleanWebpackPlugin({ verbose: true }),
+    new DefinePlugin({
+      "process.env.YTDL_EXE": JSON.stringify(path.join(__dirname, "bin", "youtube-dl.exe"))
+    })
+  ]
 };
 
 export default config;
