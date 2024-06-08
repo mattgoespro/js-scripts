@@ -29,7 +29,7 @@ function createFileServer(serveDir: string) {
   });
 
   fileServer.get("/", (_, res) => {
-    res.send(fileTypes);
+    res.status(200).send(fileTypes);
   });
 
   return fileServer;

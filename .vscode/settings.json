@@ -15,10 +15,6 @@
   "eslint.enable": true,
   "eslint.experimental.useFlatConfig": true,
   "eslint.format.enable": false,
-  "eslint.lintTask.enable": true,
-  "eslint.options": {
-    "overrideConfigFile": "eslint.config.mjs"
-  },
   "eslint.probe": ["javascript", "typescript"],
   "eslint.run": "onType",
   "eslint.validate": ["javascript", "typescript"],

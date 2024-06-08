@@ -1,5 +1,4 @@
 {
-  "include": ["src"],
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2022",
@@ -8,12 +7,17 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "lib": ["dom"],
     "types": ["node"],
-    "noEmit": false,
-    "outDir": "dist",
-    "sourceMap": false,
-    "paths": {}
+    "composite": true,
+    "sourceMap": false
   },
+  "references": [
+    {
+      "path": "./packages/file-server/tsconfig.json"
+    },
+    {
+      "path": "./packages/scripts/tsconfig.json"
+    }
+  ],
   "exclude": ["node_modules"]
 }

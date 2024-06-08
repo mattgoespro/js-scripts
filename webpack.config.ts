@@ -1,62 +1,39 @@
 import path from "path";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import TsConfigPathsWebpackPlugin from "tsconfig-paths-webpack-plugin";
-import { Configuration, DefinePlugin } from "webpack";
-import CopyWebpackPlugin from "copy-webpack-plugin";
+import { Configuration } from "webpack";
 
-const videoDownloaderOutputDir = "video-downloader/";
+export default (tsConfigPath: string): Configuration => {
+  const packageDir = path.dirname(tsConfigPath);
+  const packagePath = path.join(packageDir, "package.json");
+  const packageName = require(packagePath).name;
 
-const config: Configuration = {
-  mode: "production",
-  entry: {
-    serve: {
-      import: "./src/file-server/index.ts",
-      filename: "file-server.js"
+  if (!packageName) {
+    throw new Error(`${packageDir}: package.json must have a name field`);
+  }
+
+  return {
+    mode: "production",
+    target: "node",
+    output: {
+      path: path.join(__dirname, "dist", packageName),
+      libraryTarget: "commonjs"
     },
-    vdl: {
-      import: "./src/video-downloader.ts",
-      filename: `${videoDownloaderOutputDir}/vdl.js`
-    }
-  },
-  optimization: {
-    minimize: false
-  },
-  target: "node",
-  output: {
-    path: path.join(__dirname, "dist"),
-    libraryTarget: "commonjs"
-  },
-  resolve: {
-    extensions: [".ts", ".js"],
-    plugins: [
-      new TsConfigPathsWebpackPlugin({
-        configFile: "./tsconfig.json"
-      })
-    ]
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        loader: "ts-loader"
-      }
-    ]
-  },
-  devtool: false,
-  plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
+    resolve: {
+      extensions: [".ts", ".js"],
+      plugins: [
+        new TsConfigPathsWebpackPlugin({
+          configFile: tsConfigPath
+        })
+      ]
+    },
+    module: {
+      rules: [
         {
-          from: "bin/youtube-dl.exe",
-          to: videoDownloaderOutputDir
+          test: /\.ts$/,
+          loader: "ts-loader"
         }
       ]
-    }),
-    new CleanWebpackPlugin({ verbose: true }),
-    new DefinePlugin({
-      "process.env.YTDL_EXE": JSON.stringify(path.join(__dirname, "bin", "youtube-dl.exe"))
-    })
-  ]
+    },
+    devtool: false
+  };
 };
-
-export default config;

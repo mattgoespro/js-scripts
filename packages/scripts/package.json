@@ -1,0 +1,13 @@
+{
+  "name": "scripts",
+  "peerDependencies": {
+    "axios": "^1.6.8",
+    "commander": "^12.1.0",
+    "exec-sh": "^0.4.0",
+    "url": "^0.11.3"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.ts",
+    "start:video-downloader": "nodemon --config nodemon.json ./src/video-downloader.ts"
+  }
+}

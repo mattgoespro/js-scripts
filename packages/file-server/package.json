@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@types/express": "^4.17.21"
+  },
+  "name": "file-server",
+  "peerDependencies": {
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.ts",
+    "docker:file-server:build-image": "docker build -t hoppingmode/file-server:latest -f ./docker/file-server.dockerfile .",
+    "docker:file-server:run-container": "docker run -d -h localhost -p 5000:3000 hoppingmode/file-server:latest",
+    "start:file-server": "nodemon --config nodemon.json ./src/file-server/index.ts"
+  }
+}
