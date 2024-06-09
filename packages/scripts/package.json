@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.ts",
+    "run:text-to-ascii": "nodemon --config nodemon.json ./src/ascii/text-to-ascii.ts",
     "start:video-downloader": "nodemon --config nodemon.json ./src/video-downloader.ts"
   }
 }

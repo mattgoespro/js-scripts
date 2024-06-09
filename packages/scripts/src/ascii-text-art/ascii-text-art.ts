@@ -348,8 +348,6 @@ function getAsciiCharacter(
   const symbolFontSpec = FontAlphabets[fontName];
   const characterIndex = symbolFontSpec[symbolType].indexOf(symbol);
   const asciiSymbols = symbolFontSpec[symbolType];
-  console.log("symbol type:", symbolType);
-  console.log("character index:", characterIndex);
   let characterAscii = "";
   const letterAsciiLines = asciiSymbols.split("\n");
 
@@ -362,23 +360,57 @@ function getAsciiCharacter(
   return characterAscii;
 }
 
-console.log(getAsciiCharacter("Big", "!"));
+function getAsciiText(fontName: keyof typeof FontAlphabets, text: string): string {
+  const font = FontAlphabets[fontName];
+  const { height, letters } = font;
 
-export function getAsciiText(fontName: keyof typeof FontAlphabets, text: string): string {
-  const letters = text.split("");
-  const characters = letters.map((letter) =>
-    getAsciiCharacter(fontName, letter as (typeof SYMBOL_SET)[keyof typeof SYMBOL_SET][number])
-  );
+  // Split the letters string into an array of lines
+  const letterLines = letters.split("\n").slice(1); // Skip the initial empty line
+  const charMap = new Map<AsciiSymbol, string[]>();
 
-  const characterLines = characters.map((character) => {
-    const lines = character.split("\n");
-    const maxLength = Math.max(...lines.map((line) => line.length));
-    return lines.map((line) => line.padEnd(maxLength, " "));
-  });
+  // Create a map from character to its ASCII art lines
+  for (let i = 0; i < SYMBOL_SET.letters.length; i++) {
+    const letter = SYMBOL_SET.letters[i];
+    const charArt = [];
 
-  const wordLines = characterLines[0].map((_, lineIndex) =>
-    characterLines.map((character) => character[lineIndex]).join(" ")
-  );
+    for (let j = 0; j < height; j++) {
+      charArt.push(letterLines[i * height + j]);
+    }
 
-  return wordLines.join("\n");
+    charMap.set(letter, charArt);
+  }
+
+  for (let i = 0; i < SYMBOL_SET.characters.length; i++) {
+    const symbol = SYMBOL_SET.characters[i];
+    const symbolArt = [];
+
+    for (let j = 0; j < height; j++) {
+      symbolArt.push(letterLines[(SYMBOL_SET.letters.length + i) * height + j]);
+    }
+
+    charMap.set(symbol, symbolArt);
+  }
+
+  // Convert the input text to ASCII art
+  const asciiArtLines = Array.from({ length: height }, () => "");
+
+  for (const char of text) {
+    const lowerChar = char.toLowerCase() as AsciiSymbol;
+    const charArt = charMap.get(lowerChar);
+
+    if (charArt) {
+      for (let i = 0; i < height; i++) {
+        asciiArtLines[i] += charArt[i] + " ";
+      }
+    } else {
+      // If character is not found, add spaces
+      for (let i = 0; i < height; i++) {
+        asciiArtLines[i] += " ".repeat(6); // Assuming max width of any character is 5
+      }
+    }
+  }
+
+  return asciiArtLines.join("\n");
 }
+
+getAsciiText("Big", "Hello world!");
