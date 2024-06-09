@@ -3,8 +3,8 @@
   var _ = {};
   (() => {
     var n = _;
-    n.getAsciiText = void 0;
-    const t = {
+    Object.defineProperty(n, "__esModule", { value: !0 }), (n.getAsciiText = void 0);
+    const e = {
         Big: {
           height: 6,
           letters:
@@ -13,7 +13,7 @@
             "\n _\n| |\n| |\n| |\n|_|\n(_)\n ___\n|__ \\\n   ) |\n  / /\n |_|\n (_)\n\n\n\n _\n( )\n|/\n _ _\n( | )\n V V\n\n\n\n _\n( )\n|/\n\n\n\n\n _\n(_)\n _\n(_)\n\n\n _\n(_)\n _\n(_)\n\n _\n( )\n|/\n   _  _\n _| || |_\n|_  __  _|\n _| || |_\n|_  __  _|\n  |_||_|\n\n  ___\n ( _ )\n / _ \\/\\\n| (_>  <\n \\___/\\/\n    _\n /\\| |/\\\n \\ ` ' /\n|_     _|\n / , . \\\n \\/|_|\\/\n __\n/ /\n| |\n| |\n| |\n\\_\\\n __\n\\ \\\n | |\n | |\n | |\n /_/\n\n\n ______\n|______|\n\n\n\n\n\n\n ______\n|______|\n   __\n  / /\n / /\n< <\n\\ \\\n \\_\\\n__\n\\ \\\n \\ \\\n  > >\n / /\n/_/\n     __\n    / /\n   / /\n  / /\n / /\n/_/\n"
         }
       },
-      e = {
+      t = {
         letters: [
           "a",
           "b",
@@ -65,32 +65,34 @@
         ]
       };
     function r(_, n) {
-      const r = t[_],
+      const r = e[_],
         { height: s, letters: o } = r,
-        c = o.split("\n").slice(1),
-        l = new Map();
-      for (let _ = 0; _ < e.letters.length; _++) {
-        const n = e.letters[_],
-          t = [];
-        for (let n = 0; n < s; n++) t.push(c[_ * s + n]);
-        l.set(n, t);
+        l = o.split("\n").slice(1),
+        c = new Map();
+      for (let _ = 0; _ < t.letters.length; _++) {
+        const n = t.letters[_],
+          e = [];
+        for (let n = 0; n < s; n++) e.push(l[_ * s + n]);
+        c.set(n, e);
       }
-      for (let _ = 0; _ < e.characters.length; _++) {
-        const n = e.characters[_],
-          t = [];
-        for (let n = 0; n < s; n++) t.push(c[(e.letters.length + _) * s + n]);
-        l.set(n, t);
+      for (let _ = 0; _ < t.characters.length; _++) {
+        const n = t.characters[_],
+          e = [];
+        for (let n = 0; n < s; n++) e.push(l[(t.letters.length + _) * s + n]);
+        c.set(n, e);
       }
-      const i = Array.from({ length: s }, () => "");
+      const a = Array.from({ length: s }, () => "");
       for (const _ of n) {
         const n = _.toLowerCase(),
-          t = l.get(n);
-        if (t) for (let _ = 0; _ < s; _++) i[_] += t[_] + " ";
-        else for (let _ = 0; _ < s; _++) i[_] += " ".repeat(6);
+          e = c.get(n);
+        if (e) for (let _ = 0; _ < s; _++) a[_] += e[_] + " ";
+        else for (let _ = 0; _ < s; _++) a[_] += " ".repeat(6);
       }
-      return i.join("\n");
+      return a.join("\n");
     }
     (n.getAsciiText = r), r("Big", "Hello world!");
-  })(),
-    (window.AsciiTextArt = _.getAsciiText);
+  })();
+  var n = exports;
+  for (var e in _) n[e] = _[e];
+  _.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
 })();

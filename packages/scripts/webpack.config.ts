@@ -9,6 +9,7 @@ const videoDownloaderOutputDir = "video-downloader";
 
 export default merge<Configuration>(
   {
+    target: "web",
     entry: {
       vdl: {
         import: "./src/video-downloader.ts",
@@ -16,13 +17,7 @@ export default merge<Configuration>(
       },
       "ascii-text-art": {
         import: "./src/ascii-text-art/ascii-text-art.ts",
-        filename: "ascii-text-art.js",
-        chunkLoading: "jsonp",
-        library: {
-          name: "AsciiTextArt",
-          type: "window",
-          export: "getAsciiText"
-        }
+        filename: "ascii-text-art.js"
       }
     },
     output: {
