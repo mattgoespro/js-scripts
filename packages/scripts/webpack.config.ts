@@ -17,9 +17,11 @@ export default merge<Configuration>(
       "ascii-text-art": {
         import: "./src/ascii-text-art/ascii-text-art.ts",
         filename: "ascii-text-art.js",
+        chunkLoading: "jsonp",
         library: {
           name: "AsciiTextArt",
-          type: "window"
+          type: "window",
+          export: "getAsciiText"
         }
       }
     },

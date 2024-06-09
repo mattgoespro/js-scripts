@@ -360,7 +360,7 @@ function getAsciiCharacter(
   return characterAscii;
 }
 
-function getAsciiText(fontName: keyof typeof FontAlphabets, text: string): string {
+export function getAsciiText(fontName: keyof typeof FontAlphabets, text: string): string {
   const font = FontAlphabets[fontName];
   const { height, letters } = font;
 
