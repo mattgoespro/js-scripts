@@ -14,7 +14,10 @@ export default merge<Configuration>(
         import: "./src/video-downloader.ts",
         filename: `${videoDownloaderOutputDir}/vdl.js`
       },
-      "ascii-text-art": { import: "./src/ascii-text-art.ts", filename: "ascii-text-art.js" }
+      "ascii-text-art": {
+        import: "./src/ascii-text-art/ascii-text-art.ts",
+        filename: "ascii-text-art.js"
+      }
     },
     output: {
       path: path.join(config.output.path, "scripts")
