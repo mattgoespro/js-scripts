@@ -1,5 +1,4 @@
 node_modules/
-out/scraped/**
-out/*.json
+dist/types/
 temp/
 j4t/

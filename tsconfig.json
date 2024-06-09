@@ -9,6 +9,7 @@
     "resolveJsonModule": true,
     "types": ["node"],
     "composite": true,
+    "declarationDir": "./dist/types",
     "sourceMap": false
   },
   "references": [

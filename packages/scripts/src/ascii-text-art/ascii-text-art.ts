@@ -414,3 +414,5 @@ export function getAsciiText(fontName: keyof typeof FontAlphabets, text: string)
 }
 
 getAsciiText("Big", "Hello world!");
+
+exports = {};
