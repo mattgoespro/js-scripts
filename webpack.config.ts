@@ -13,7 +13,6 @@ export default (tsConfigPath: string): Configuration => {
 
   return {
     mode: "production",
-    target: "node",
     output: {
       path: path.join(__dirname, "dist", packageName),
       libraryTarget: "commonjs"

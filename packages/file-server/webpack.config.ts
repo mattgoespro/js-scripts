@@ -7,6 +7,7 @@ const config = baseConfig(path.join(__dirname, "tsconfig.json"));
 
 export default merge<Configuration>(
   {
+    target: "node",
     entry: "./src/file-server.ts",
     output: {
       path: path.join(config.output.path, "file-server"),

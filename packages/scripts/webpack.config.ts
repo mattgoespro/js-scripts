@@ -8,32 +8,24 @@ const config = baseConfig(path.join(__dirname, "tsconfig.json"));
 const videoDownloaderOutputDir = "video-downloader";
 
 export default merge<Configuration>(
+  // configuration that binds exported module functions to the global scope
   {
-    target: "web",
-    entry: {
-      vdl: {
-        import: "./src/video-downloader.ts",
-        filename: `${videoDownloaderOutputDir}/vdl.js`
-      },
-      "ascii-text-art": {
-        import: "./src/ascii-text-art/ascii-text-art.ts",
-        filename: "ascii-text-art.js"
-      }
-    },
     output: {
-      path: path.join(config.output.path, "scripts")
+      library: "TextToAscii",
+      libraryTarget: "umd",
+      globalObject: "this"
     },
     plugins: [
+      new DefinePlugin({
+        __VIDEO_DOWNLOADER_OUTPUT_DIR__: JSON.stringify(videoDownloaderOutputDir)
+      }),
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: path.join(__dirname, "bin", "youtube-dl.exe"),
+            from: path.join(__dirname, videoDownloaderOutputDir),
             to: videoDownloaderOutputDir
           }
         ]
-      }),
-      new DefinePlugin({
-        "process.env.YTDL_EXE": JSON.stringify(path.join(__dirname, "bin", "youtube-dl.exe"))
       })
     ]
   },

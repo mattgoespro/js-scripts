@@ -1,8 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src"],
-  "compilerOptions": {
-    "target": "es2015",
-    "lib": ["dom"]
-  }
+  "include": ["node", "web"],
+  "compilerOptions": {}
 }
